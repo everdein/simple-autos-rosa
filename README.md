@@ -21,11 +21,11 @@
 4. Run with PostgreSQL database
 
   ```bash
-  export DB_HOST=postgres.galvanizelabs.net
+  export DB_HOST=
   export DB_PORT=5432
   export DB_NAME=automobiles
   export DB_USER=automobiles
-  export DB_PWD=autos123
+  export DB_PWD=
   ./mvnw spring-boot:run
   ```
 

@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: simple-autos-configmap
 data:
-  DB_HOST: "postgres.galvanizelabs.net"
+  DB_HOST: ""
   # DB_HOST: "automobiles"
   DB_PORT: "5432"
   DB_NAME: "automobiles"
