@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: simple-autos
+  labels:
+    app: simple-autos  # Optional label, useful for identifying and managing services
+spec:
+  selector:
+    app: simple-autos  # Label selector to find the pods that this service will target
+  ports:
+    - protocol: TCP
+      port: 80       # The port on which the service will be exposed
+      targetPort: 8080  # The port on the container that the service should forward traffic to
+  type: LoadBalancer  # Specifies the type of service as LoadBalancer

@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-autos
+  labels:
+    app: simple-autos
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: simple-autos
+  template:
+    metadata:
+      labels:
+        app: simple-autos
+    spec:
+      containers:
+        - name: simple-autos
+          image: registry.gitlab.galvanize.com/cohorts/ent/sf/cse-rosa/cse-rosa-2024-01-27/student-work/dennis-huynh/simple-autos-rosa
+          # image: everdein/simple-autos-eso-exercise
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              cpu: "0.5"
+              memory: "256Mi"
+            requests:
+              cpu: "0.1"
+              memory: "128Mi"
+          env:
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: simple-autos-configmap
+                  key: DB_HOST
+                  optional: false
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: simple-autos-configmap
+                  key: DB_PORT
+                  optional: false
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: simple-autos-configmap
+                  key: DB_NAME
+                  optional: false
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: simple-autos-secret
+                  key: DB_USER
+                  optional: false
+            - name: DB_PWD
+              valueFrom:
+                secretKeyRef:
+                  name: simple-autos-secret
+                  key: DB_PWD
+                  optional: false
